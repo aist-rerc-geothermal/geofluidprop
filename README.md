@@ -1,6 +1,8 @@
 地熱流体物性計算ライブラリ geofluidprop ver1.0
 ====
 
+[![CMake](https://github.com/aist-rerc-geothermal/geofluidprop/actions/workflows/build_test.yml/badge.svg)](https://github.com/aist-rerc-geothermal/geofluidprop/actions/workflows/build_test.yml)
+
 ## 概要
 `geofluidprop`は，主に地熱系を対象にした各種解析において必要になる流体の相状態や物性値を計算するためのC言語ライブラリです。現時点での本ライブラリの特徴は以下の通りです。
 - 一般的に使用される地熱流体モデルの状態方程式を実装（現時点では，純水とH<sub>2</sub>O-NaClのみ)
