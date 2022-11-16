@@ -16,7 +16,7 @@ int eos_get_eos_type(const char* name)
     if (strcmp("DRIESNER07", name) == 0)
         return EOS_TYPE_H2ONaCl_DRIESNER07;
     if (strcmp("IF97_FREESTEAM", name) == 0)
-        return EOS_TYPE_WATER_IF97;
+        return EOS_TYPE_WATER_IF97_FREESTEAM;
     if (strcmp("IAPS84_PROST", name) == 0)
         return EOS_TYPE_WATER_IAPS84_PROST;
     if (strcmp("DRIESNER07_PROST", name) == 0)
