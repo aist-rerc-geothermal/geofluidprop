@@ -40,10 +40,10 @@ void eos_if97_freesteam_register()
     eos_impl_calc_sat_T_p[index] = COMMAND(sat_T_p);
     eos_impl_calc_sat_rhol_T[index] = COMMAND(sat_rhol_T);
     eos_impl_calc_sat_rhov_T[index] = COMMAND(sat_rhov_T);
-    // eos_impl_calc_sat_rholv_T[index] = COMMAND(sat_rholv_T);
-    // eos_impl_calc_sat_rholv_p[index] = COMMAND(sat_rholv_p);
-    // eos_impl_calc_sat_hlv_T[index] = COMMAND(sat_hlv_T);
-    // eos_impl_calc_sat_hlv_p[index] = COMMAND(sat_hlv_p);
+    eos_impl_calc_sat_rholv_T[index] = COMMAND(sat_rholv_T);
+    eos_impl_calc_sat_rholv_p[index] = COMMAND(sat_rholv_p);
+    eos_impl_calc_sat_hlv_T[index] = COMMAND(sat_hlv_T);
+    eos_impl_calc_sat_hlv_p[index] = COMMAND(sat_hlv_p);
     eos_impl_calc_vis_rhoT[index] = COMMAND(vis_rhoT);
 }
 
@@ -191,6 +191,42 @@ double eos_if97_freesteam_sat_rhov_T(void* eos, EOS_ARGS* args)
     SteamState S = freesteam_set_Tx(args->T, 1.);
     double rho = freesteam_rho(S);
     return rho;
+}
+
+void eos_if97_freesteam_sat_rholv_T(void* eos, EOS_ARGS* args, double* rhol, double* rhov)
+{
+    *rhol = eos_if97_freesteam_sat_rhol_T(eos, args);
+    *rhov = eos_if97_freesteam_sat_rhov_T(eos, args);
+}
+
+void eos_if97_freesteam_sat_rholv_p(void* eos, EOS_ARGS* args, double* rhol, double* rhov)
+{
+    args->T = eos_if97_freesteam_sat_T_p(eos, args);
+    eos_if97_freesteam_sat_rholv_T(eos, args, rhol, rhov);
+}
+
+double eos_if97_freesteam_sat_hl_T(void* eos, EOS_ARGS* args)
+{
+    SteamState S = freesteam_set_Tx(args->T, 0.);
+    return freesteam_h(S);
+}
+
+double eos_if97_freesteam_sat_hv_T(void* eos, EOS_ARGS* args)
+{
+    SteamState S = freesteam_set_Tx(args->T, 1.);
+    return freesteam_h(S);
+}
+
+void eos_if97_freesteam_sat_hlv_T(void* eos, EOS_ARGS* args, double* hl, double* hv)
+{
+    *hl = eos_if97_freesteam_sat_hl_T(eos, args);
+    *hv = eos_if97_freesteam_sat_hv_T(eos, args);
+}
+
+void eos_if97_freesteam_sat_hlv_p(void* eos, EOS_ARGS* args, double* hl, double* hv)
+{
+    args->T = eos_if97_freesteam_sat_T_p(eos, args);
+    eos_if97_freesteam_sat_hlv_T(eos, args, hl, hv);
 }
 
 double eos_if97_freesteam_wv_ph(void* eos, EOS_ARGS* args)

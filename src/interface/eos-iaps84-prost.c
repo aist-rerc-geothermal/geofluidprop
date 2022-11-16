@@ -25,6 +25,14 @@ void eos_iaps84_prost_register()
     eos_impl_calc_p_rhoT[index] = COMMAND(p_rhoT);
     eos_impl_calc_T_ph[index] = COMMAND(T_ph);
     eos_impl_calc_wv_ph[index] = COMMAND(wv_ph);
+    eos_impl_calc_sat_p_T[index] = COMMAND(sat_p_T);
+    eos_impl_calc_sat_T_p[index] = COMMAND(sat_T_p);
+    eos_impl_calc_sat_rhol_T[index] = COMMAND(sat_rhol_T);
+    eos_impl_calc_sat_rhov_T[index] = COMMAND(sat_rhov_T);
+    eos_impl_calc_sat_rholv_T[index] = COMMAND(sat_rholv_T);
+    eos_impl_calc_sat_rholv_p[index] = COMMAND(sat_rholv_p);
+    eos_impl_calc_sat_hlv_T[index] = COMMAND(sat_hlv_T);
+    eos_impl_calc_sat_hlv_p[index] = COMMAND(sat_hlv_p);
     eos_impl_calc_vis_rhoT[index] = COMMAND(vis_rhoT);
 }
 
@@ -133,6 +141,29 @@ double eos_iaps84_prost_T_ph(void* eos, EOS_ARGS* args)
     return T;
 }
 
+
+double eos_iaps84_prost_sat_p_T(void* eos, EOS_ARGS* args)
+{
+    Prop* propl = newProp('p', 'p', 0);
+    Prop* propg = newProp('p', 'p', 0);
+    sat_t(args->T, propl, propg);
+    double p = propl->p;
+    freeProp(propl);
+    freeProp(propg);
+    return p;
+}
+
+double eos_iaps84_prost_sat_T_p(void* eos, EOS_ARGS* args)
+{
+    Prop* propl = newProp('p', 'p', 0);
+    Prop* propg = newProp('p', 'p', 0);
+    sat_p(args->p, propl, propg);
+    double T = propl->T;
+    freeProp(propl);
+    freeProp(propg);
+    return T;
+}
+
 double eos_iaps84_prost_wv_ph(void* eos, EOS_ARGS* args)
 {
     Prop* propl = newProp('p', 'p', 0);
@@ -172,10 +203,78 @@ double eos_iaps84_prost_sat_rhov_T(void* eos, EOS_ARGS* args)
     Prop* propl = newProp('T', 'T', 0);
     Prop* propg = newProp('T', 'T', 0);
     sat_t(args->T, propl, propg);
-    double rho = propl->d;
+    double rho = propg->d;
     freeProp(propl);
     freeProp(propg);
     return rho;
+}
+
+
+void eos_iaps84_prost_sat_rholv_T(void* eos, EOS_ARGS* args, double* rhol, double* rhov)
+{
+    Prop* propl = newProp('T', 'T', 0);
+    Prop* propg = newProp('T', 'T', 0);
+    sat_t(args->T, propl, propg);
+    *rhol = propl->d;
+    *rhov = propg->d;
+    freeProp(propl);
+    freeProp(propg);
+}
+
+void eos_iaps84_prost_sat_rholv_p(void* eos, EOS_ARGS* args, double* rhol, double* rhov)
+{
+    Prop* propl = newProp('T', 'T', 0);
+    Prop* propg = newProp('T', 'T', 0);
+    sat_p(args->p, propl, propg);
+    *rhol = propl->d;
+    *rhov = propg->d;
+    freeProp(propl);
+    freeProp(propg);
+}
+
+double eos_iaps84_prost_sat_hl_T(void* eos, EOS_ARGS* args)
+{
+    Prop* propl = newProp('T', 'T', 0);
+    Prop* propg = newProp('T', 'T', 0);
+    sat_t(args->T, propl, propg);
+    double h = propl->h;
+    freeProp(propl);
+    freeProp(propg);
+    return h;
+}
+
+double eos_iaps84_prost_sat_hv_T(void* eos, EOS_ARGS* args)
+{
+    Prop* propl = newProp('T', 'T', 0);
+    Prop* propg = newProp('T', 'T', 0);
+    sat_t(args->T, propl, propg);
+    double h = propg->h;
+    freeProp(propl);
+    freeProp(propg);
+    return h;
+}
+
+
+void eos_iaps84_prost_sat_hlv_T(void* eos, EOS_ARGS* args, double* hl, double* hv)
+{
+    Prop* propl = newProp('T', 'T', 0);
+    Prop* propg = newProp('T', 'T', 0);
+    sat_t(args->T, propl, propg);
+    *hl = propl->h;
+    *hv = propg->h;
+    freeProp(propl);
+    freeProp(propg);
+}
+
+void eos_iaps84_prost_sat_hlv_p(void* eos, EOS_ARGS* args, double* hl, double* hv)
+{
+    Prop* propl = newProp('T', 'T', 0);
+    Prop* propg = newProp('T', 'T', 0);
+    sat_p(args->p, propl, propg);
+    *hl = propl->h;
+    *hv = propg->h;
+    freeProp(propl);
+    freeProp(propg);
 }
 
 double eos_iaps84_prost_vis_rhoT(void* eos, EOS_ARGS* args)
