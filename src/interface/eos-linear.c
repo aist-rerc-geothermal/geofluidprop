@@ -106,7 +106,10 @@ double eos_linear_dh_dp(void* eos, EOS_ARGS* args)
 
 double eos_linear_p_rhoT(void* eos, EOS_ARGS* args)
 {
-    return -1.0;
+    EOS_LINEAR_VALUES* obj = (EOS_LINEAR_VALUES*)eos;
+    //
+    double p = obj->p0 + 1./obj->beta_p * (args->rho / obj->rho0 - 1.0 + (args->T - obj->T0)*obj->beta_T);
+    return p;
 }
 
 double eos_linear_T_ph(void* eos, EOS_ARGS* args)
