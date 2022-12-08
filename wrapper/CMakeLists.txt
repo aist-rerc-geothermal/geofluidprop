@@ -42,6 +42,11 @@ if (BUILD_R_LIB)
     endif()
     swig_link_libraries(geofluidprop_r ${tmp_R_LIB})
   endif()
+  if(APPLE)
+    message(STATUS "link R lib on mac : ${R_LIBRARY_BASE}")
+    swig_link_libraries(geofluidprop_r ${R_LIBRARY_BASE})
+  endif()
+  
 endif()
 
 if (BUILD_PYTHON_LIB)
