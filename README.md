@@ -85,7 +85,9 @@ double rho = iapws95_rho_pT(p, T);
 
 
 ## R，Pythonインターフェイスについて
-機能は限られますが，本ライブラリをR，Python言語から呼び出すことが可能です。詳細については，[`wrapper/R/README.md`](wrapper/R/README.md)，または[`wrapper/Python/README.md`](wrapper/Python/README.md) をご確認ください。
+SWIGを用いて，本ライブラリをRやPython言語から呼び出すことが可能です。詳細については，[`wrapper/R/README.md`](wrapper/R/README.md)，または[`wrapper/Python/README.md`](wrapper/Python/README.md) をご確認ください。
+
+簡易版ではありますが，R用パッケージは[`geofluidprop-R`リポジトリ](https://github.com/aist-rerc-geothermal/geofluidprop-R)からもインストール可能です。
 
 
 ## サードパーティライブラリの使用について
