@@ -1,5 +1,5 @@
-remote_theme: pages-themes/cayman@v0.2.0
 title: 地熱流体物性計算ライブラリ geofluidprop
+remote_theme: pages-themes/modernist@v0.2.0
 plugins:
   - jekyll-sitemap
-  - jekyll-remote-theme # add this line to the plugins list if you already have one
+  - jekyll-remote-theme
