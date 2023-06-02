@@ -95,6 +95,7 @@ double driesner07_H2O_NaCl_rho_singlephase_pTx(double p_Pa, double T_K, double x
 // molar volume
 double driesner07_H2O_NaCl_vm_singlephase_pTx(double p_Pa, double T_K, double x);
 double driesner07_H2O_NaCl_h_singlephase_pTx(double p_Pa, double T_K, double x);
+double driesner07_H2O_NaCl_u_singlephase_pTx(double p_Pa, double T_K, double x);
 double driesner07_H2O_NaCl_cp_singlephase_pTx(double p_Pa, double T_K, double x);
 
 //-------------------------------------------------------------------

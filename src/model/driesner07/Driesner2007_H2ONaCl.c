@@ -888,6 +888,14 @@ double driesner07_H2O_NaCl_h_singlephase_pTx(double p_Pa, double T_K, double x)
     return h2o_h_pT(p_Pa, to_K(Th));
 }
 
+double driesner07_H2O_NaCl_u_singlephase_pTx(double p_Pa, double T_K, double x)
+{
+    double h = driesner07_H2O_NaCl_h_singlephase_pTx(p_Pa, T_K, x);
+    double rho = driesner07_H2O_NaCl_rho_singlephase_pTx(p_Pa, T_K, x);
+    double u = h - p_Pa/rho;
+    return u;
+}
+
 double driesner07_H2O_NaCl_cp_singlephase_pTx(double p_Pa, double T_K, double x)
 {
     const double p = to_bar(p_Pa);
