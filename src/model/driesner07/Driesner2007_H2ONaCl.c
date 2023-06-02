@@ -544,6 +544,14 @@ static bool isTwoPhase(double p, double T, double x)
 
 H2O_NaCl_PhaseType driesner07_H2O_NaCl_phase_type(double p, double T, double x)
 {
+    if (x==0) { // pure water
+      if (T >= H2O_Tc && p >= H2O_pc)
+        return H2O_NaCl_PhaseType_SC;
+      if (p > h2o_sat_p(T))
+        return H2O_NaCl_PhaseType_L;
+      return H2O_NaCl_PhaseType_V;
+    }
+
     if (isLquid(p, T, x))
     {
         double xsat = driesner07_H2O_NaCl_NaCl_solubility_xl_pT(p,T);
