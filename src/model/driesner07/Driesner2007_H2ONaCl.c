@@ -1070,6 +1070,12 @@ double driesner07_H2O_NaCl_rho_pTx(double p_Pa, double T_K, double x)
 double driesner07_H2O_NaCl_h_pTx(double p_Pa, double T_K, double x)
 {
     const H2O_NaCl_PhaseType phase_type = driesner07_H2O_NaCl_phase_type(p_Pa, T_K, x);
+    if (x==0) // pure water
+    {
+        return h2o_h_pT(p_Pa, T_K);
+        //TODO two-phase state
+    }
+
     if (phase_type == H2O_NaCl_PhaseType_V || phase_type == H2O_NaCl_PhaseType_L)
     {
         return driesner07_H2O_NaCl_h_singlephase_pTx(p_Pa, T_K, x);
