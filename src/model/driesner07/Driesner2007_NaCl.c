@@ -78,21 +78,42 @@ double driesner07_NaCl_H_rho_pT(double p_Pa, double T_K)
 
 double driesner07_NaCl_H_h_pT(double p_Pa, double T_K)
 {
-    double h_tr = driesner07_NaCl_VLH_h_halite();
-    double cp = driesner07_NaCl_H_cp_pT(p_Pa, T_K);
+    // reference: 0 kJ at triple point of water
+    const double pbar = p_Pa * 1e-5;
+    const double TC = to_C(T_K);
+    const double TC2 = TC*TC;
+    const double TC3 = TC2*TC;
+    const double pbar2 = pbar*pbar;
+    const double pbar3 = pbar2*pbar;
 
-    double h = h_tr;
-    int n = 10;
-    double dT = (T_K - driesner07_NaCl_VLH_T())/n;
-    for (int i = 0; i < n; i++)
-    {
-        double T2 = driesner07_NaCl_VLH_T() + dT*(i+1);
-        double cp = driesner07_NaCl_H_cp_pT(p_Pa, T2);
-        h += cp*dT;
-    }
+    double h = -5.38886174479783e-7 * TC3 - 0.0003923262630094 * TC2 - 5.36200713248267 * TC;
+    h += pbar3 * (7.2305e-14 * TC3 - 1.60514e-11 * TC2 + 1.76354333333333e-8 * TC - 1.76352728265638e-10);
+    h += pbar2 * (- 1.442425e-9 * TC3 - 9.56835e-7 * TC2 - 0.00085495 * TC + 8.54959568494242e-6);
+    h += pbar * (8.8103e-5 * TC3 + 0.0641417837 * TC2 + 876.63943199141 * TC - 8.76640073418057);
+    h += 0.0536201105579919;
 
     return h;
 }
+
+// previous implementation
+// double driesner07_NaCl_H_h_pT(double p_Pa, double T_K)
+// {
+//     double h_tr = driesner07_NaCl_VLH_h_halite();
+//     double cp = driesner07_NaCl_H_cp_pT(p_Pa, T_K);
+//
+//     double h = h_tr;
+//     int n = 10;
+//     double dT = (T_K - driesner07_NaCl_VLH_T())/n;
+//     for (int i = 0; i < n; i++)
+//     {
+//         double T2 = driesner07_NaCl_VLH_T() + dT*(i+1);
+//         double cp = driesner07_NaCl_H_cp_pT(p_Pa, T2);
+//         h += cp*dT;
+//     }
+//
+//     return h;
+// }
+
 
 double driesner07_NaCl_H_cp_pT(double p_Pa, double T_K)
 {
