@@ -1,4 +1,4 @@
-地熱流体物性計算ライブラリ geofluidprop ver1.0
+地熱流体物性計算ライブラリ geofluidprop
 ====
 
 [![CMake](https://github.com/aist-rerc-geothermal/geofluidprop/actions/workflows/build_test.yml/badge.svg)](https://github.com/aist-rerc-geothermal/geofluidprop/actions/workflows/build_test.yml)
@@ -99,10 +99,10 @@ SWIGを用いて，本ライブラリをRやPython言語から呼び出すこと
 - VTK v8.2.0 (https://github.com/Kitware/VTK, BSD 3-clause License) (optional, we use their FindR.cmake)
 
 ## 謝辞
-本ライブラリが提供する機能の一部は，国立研究開発法人新エネルギー・産業技術総合開発機構（ＮＥＤＯ）の委託業務により開発されたものです。
+本ライブラリが提供する機能の一部は，国立研究開発法人新エネルギー・産業技術総合開発機構（NEDO）の委託業務により開発されたものです。
 
 ## ライセンス
-Copyright (C) 2022, National Institute of Advanced Industrial Science and Technology (AIST), All rights reserved.  
+Copyright (C) 2022-2023, National Institute of Advanced Industrial Science and Technology (AIST), All rights reserved.  
 
 本ライブラリは，国立研究開発法人産業技術総合研究所（以下，産総研）が著作権を有しており，LGPL v3，GPL v2，または個別契約のトリプルライセンスの下で提供します。
 ライセンスの詳細については，[LICENSE.md](LICENSE.md)をご確認ください。
