@@ -2,6 +2,7 @@
 ====
 
 [![CMake](https://github.com/aist-rerc-geothermal/geofluidprop/actions/workflows/build_test.yml/badge.svg)](https://github.com/aist-rerc-geothermal/geofluidprop/actions/workflows/build_test.yml)
+[![DOI](https://zenodo.org/badge/565654666.svg)](https://zenodo.org/badge/latestdoi/565654666)
 
 ## 概要
 `geofluidprop`は，主に地熱系を対象にした各種解析において必要になる流体の相状態や物性値を計算するためのC言語ライブラリです。現時点での本ライブラリの特徴は以下の通りです。
