@@ -104,7 +104,7 @@ double driesner07_NaCl_H_cp_pT(double p_Pa, double T_K)
     double r1 = 0.275774;
     double r2 = 8.8103e-5;
     double r3 = -1.7099e-3 - 3.82734e-6*T - 8.65455e-9*T*T;
-    double r4 = 5.29063e-8 - 9.63084e-11 + 6.50745e-13;
+    double r4 = 5.29063e-8 - 9.63084e-11*T + 6.50745e-13*T*T;
 
     double cp = r0 + 2*r1*(T-Ttr) + 3*r2*(T-Ttr)*(T-Ttr) + r3*p + r4*p*p;
     return cp;
