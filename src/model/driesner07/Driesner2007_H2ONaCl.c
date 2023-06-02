@@ -147,6 +147,14 @@ static double H2O_to_vm(double v_m3_kg)
     return v_m3_kg * H2O_M;
 }
 
+double H2ONaCl_x_to_massfrac(double mole_frac)
+{
+  double W_NaCl = mole_frac * 58.443e-3;
+  double W_H2O = (1. - mole_frac) * 18.015e-3;
+  double X = W_NaCl / (W_NaCl + W_H2O);
+  return X;
+}
+
 #pragma endregion
 
 
@@ -398,6 +406,19 @@ double driesner07_H2O_NaCl_LH_xl_pT(double p_Pa, double T_K)
     //assert(0<=x && x<=1.);
     return x;
 }
+
+// volume fraction of halite in LH
+double driesner07_H2O_NaCl_LH_vol_frac_h(double p, double TK, double x, double rhoh)
+{
+  const double xl = driesner07_H2O_NaCl_LH_xl_pT(p, TK);
+  const double rhol = driesner07_H2O_NaCl_rho_singlephase_pTx(p, TK,xl);
+  const double X = H2ONaCl_x_to_massfrac(x);
+  const double Xl = H2ONaCl_x_to_massfrac(xl);
+  const double Xh = 1.0;
+  double vol_frac_h = (rhol* (X - Xl) )/(rhoh*(Xh - X)+rhol*(X-Xl));
+  return vol_frac_h;
+}
+
 #pragma endregion
 
 #pragma region VH
@@ -408,6 +429,19 @@ double driesner07_H2O_NaCl_VH_xv_pT(double p, double T)
                     / driesner07_H2O_NaCl_VL_K(p,T);
     return x_v_sat;
 }
+
+// volume fraction of halite in VH
+double driesner07_H2O_NaCl_VH_vol_frac_h(double p, double TK, double x, double rhoh)
+{
+  double xv = driesner07_H2O_NaCl_VH_xv_pT(p, TK);
+  double rhov = driesner07_H2O_NaCl_rho_singlephase_pTx(p, TK,xv);
+  double X = H2ONaCl_x_to_massfrac(x);
+  double Xv = H2ONaCl_x_to_massfrac(xv);
+  double Xh = 1.0;
+  double vol_frac_h = (rhov* (X - Xv) )/(rhoh*(Xh - X)+rhov*(X-Xv));
+  return vol_frac_h;
+}
+
 #pragma endregion
 
 #pragma region VLH

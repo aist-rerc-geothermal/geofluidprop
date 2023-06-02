@@ -64,12 +64,16 @@ double driesner07_H2O_NaCl_VL_rhol_pT(double p_Pa, double T_K);
 //-------------------------------------------------------------------
 // mole fraction of liquid phase in LH
 double driesner07_H2O_NaCl_LH_xl_pT(double p, double T);
+// volume fraction of halite in LH
+double driesner07_H2O_NaCl_LH_vol_frac_h(double p, double TK, double x, double rhoh);
 
 //-------------------------------------------------------------------
 // vapor-halite
 //-------------------------------------------------------------------
 // mole fraction of liquid phase in VH
 double driesner07_H2O_NaCl_VH_xv_pT(double p, double T);
+// volume fraction of halite in VH
+double driesner07_H2O_NaCl_VH_vol_frac_h(double p, double TK, double x, double rhoh);
 
 //-------------------------------------------------------------------
 // vapor-liquid-halite
