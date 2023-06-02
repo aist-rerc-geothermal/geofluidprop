@@ -24,12 +24,13 @@ static double const pt_NaCl_bar = 50.0e-5;    // [bar]
 double driesner07_NaCl_VLH_p() {return pt_NaCl; }
 double driesner07_NaCl_VLH_T() {return Tt_NaCl; }
 double driesner07_NaCl_VLH_TC() {return Tt_NaCl_C; }
-double driesner07_NaCl_VLH_h_halite()
-{
-    double h_moltenNaCl = driesner07_H2O_NaCl_h_pTx(driesner07_NaCl_VLH_p(), driesner07_NaCl_VLH_T(), 1.);
-    double h_fusion = 29.8e3;
-    return h_moltenNaCl + h_fusion;
-}
+// double driesner07_NaCl_VLH_h_halite()
+// {
+//     assert(false); // need to check formula
+//     // double h_moltenNaCl = driesner07_H2O_NaCl_h_pTx(driesner07_NaCl_VLH_p(), driesner07_NaCl_VLH_T(), 1.);
+//     // double h_fusion = 29.8e3;
+//     // return h_moltenNaCl + h_fusion;
+// }
 
 double driesner07_NaCl_LH_T_p(double p)
 {

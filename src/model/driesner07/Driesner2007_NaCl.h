@@ -18,7 +18,7 @@
 double driesner07_NaCl_VLH_p();
 double driesner07_NaCl_VLH_T();
 double driesner07_NaCl_VLH_TC();
-double driesner07_NaCl_VLH_h_halite();
+// double driesner07_NaCl_VLH_h_halite();
 
 // melting temperature
 double driesner07_NaCl_LH_T_p(double p);
