@@ -35,6 +35,8 @@ void* eos_linear_create()
     values->beta_p = 4.5e-10;
     values->T0 = 20. + 273.15;
     values->beta_T = 207e-6;
+    values->x1_0 = 0;
+    values->beta_x1 = 0;
     values->cp = 4180.0;
     values->vis = 1e-3;
     return values;
@@ -48,7 +50,7 @@ void eos_linear_free(void* data)
 double eos_linear_rho_pT(void* eos, EOS_ARGS* args)
 {
     EOS_LINEAR_VALUES* obj = (EOS_LINEAR_VALUES*)eos;
-    return obj->rho0 * (1.0 + (args->p - obj->p0)*obj->beta_p - (args->T - obj->T0)*obj->beta_T);
+    return obj->rho0 * (1.0 + (args->p - obj->p0)*obj->beta_p - (args->T - obj->T0)*obj->beta_T + (args->x1 - obj->x1_0)*obj->beta_x1);
 }
 
 double eos_linear_rho_ph(void* eos, EOS_ARGS* args)

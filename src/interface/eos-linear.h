@@ -11,6 +11,8 @@ typedef struct
     double beta_p;
     double T0;
     double beta_T;
+    double x1_0;
+    double beta_x1;
     double cp;
     double vis;
 } EOS_LINEAR_VALUES;
