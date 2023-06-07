@@ -1,7 +1,7 @@
 #-----------------------------------------------------------
 # CMake project setting
 #-----------------------------------------------------------
-cmake_minimum_required (VERSION 2.8.3)
+cmake_minimum_required (VERSION 2.8.12)
 enable_testing()
 cmake_policy(SET CMP0042 NEW)
 
