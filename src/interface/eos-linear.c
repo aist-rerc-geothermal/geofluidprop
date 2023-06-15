@@ -57,7 +57,8 @@ double eos_linear_rho_pT(void* eos, EOS_ARGS* args)
 
 double eos_linear_rho_ph(void* eos, EOS_ARGS* args)
 {
-    args->T = args->h /  ((EOS_LINEAR_VALUES*)eos)->cp;
+    EOS_LINEAR_VALUES* obj = (EOS_LINEAR_VALUES*)eos;
+    args->T = (args->h - obj->h0) /  obj->cp + obj->T_h0;
     return eos_linear_rho_pT(eos, args);
 }
 
