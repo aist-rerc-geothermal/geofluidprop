@@ -313,8 +313,8 @@ int if97_find_region_ph(double pres, double enth)
     if (pres < Pmin || Pmax < pres) return -1;
     if (enth > if97_h_pT_region2(pres, TKmax))
         return -1; // h > hmax
-    if (enth < if97_h_pT_region1(pres, TKmin))
-        return -1; // h < hin
+    // if (enth < if97_h_pT_region1(pres, TKmin))
+    //     return -1; // h < hin
 
     // Test blow saturation pressure at 350 degC
     if (pres <= Pref)
