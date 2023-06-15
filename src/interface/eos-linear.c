@@ -39,6 +39,8 @@ void* eos_linear_create()
     values->beta_x1 = 0;
     values->cp = 4180.0;
     values->vis = 1e-3;
+    values->h0 = 84.0e3;
+    values->T_h0 = 20. + 273.15;
     return values;
 }
 
@@ -69,7 +71,11 @@ double eos_linear_u_pT(void* eos, EOS_ARGS* args)
 
 double eos_linear_h_pT(void* eos, EOS_ARGS* args)
 {
-    return ((EOS_LINEAR_VALUES*)eos)->cp*args->T;
+    double cp = ((EOS_LINEAR_VALUES*)eos)->cp;
+    double h0 = ((EOS_LINEAR_VALUES*)eos)->h0;
+    double T_at_h0 = ((EOS_LINEAR_VALUES*)eos)->T_h0;
+    double h = h0 + cp*(args->T - T_at_h0);
+    return h;
 }
 
 double eos_linear_drho_dh(void* eos, EOS_ARGS* args)
