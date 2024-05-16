@@ -1,4 +1,4 @@
-地熱流体物性計算ライブラリ geofluidprop
+地熱流体物性計算ライブラリ [geofluidprop](https://github.com/aist-rerc-geothermal/geofluidprop)
 ====
 
 [![CMake](https://github.com/aist-rerc-geothermal/geofluidprop/actions/workflows/build_test.yml/badge.svg)](https://github.com/aist-rerc-geothermal/geofluidprop/actions/workflows/build_test.yml)
